@@ -1,0 +1,35 @@
+Uebersicht an Patterns:
+
+Point-to-Point Channel:
+-ensures that only one receiver will receive a particular message
+-if the channel has multiple receivers, only one of them can successfully consume a particular message
+-if multiple receivers try to consume a single message, the channel ensures that only one of them succeeds, so the receivers do not have to coordinate with each other
+
+Publish-Subscribe Channel:
+-has one input channel that splits into multiple output channels, one for each subscriber
+-when an event is published into the channel, the Publish-Subscribe Channel delivers a copy of the message to each of the output channels
+-each output channel has only one subscriber, which is only allowed to consume a message once
+=>each subscriber only gets the message once and consumed copies disappear from their channels
+
+Aggregator:
+-combines the results of individual, but related messages
+-collect and store individual messages until a complete set of related messages has been received 
+=>Aggregator publishes a single message, aggregated message to the output channel for further processing
+
+Content-Based-Router:
+-
+
+Content Enricher:
+-
+
+Message Translator:
+-systems using different data formats can communicate with each other using a special filter for messaging
+-use a special filter, Message Translator, between other filters or applications to translate one data format into another
+
+Channel Adapter:
+-channel adapter can connect an application to the messaging system => it can send and receive messages
+-channel adapter can access the application's API or data and publish messages on a channel based on this data, and that likewise can receive messages and invoke functionality inside the application
+
+Message Endpoint:
+-thorugh a Message Endpoint, an application can connect to a messaging channel to send and receive messages
+-connect an application to a messaging channel using a Message Endpoint, a client of the messaging system that the application can then use to send or receive messages
