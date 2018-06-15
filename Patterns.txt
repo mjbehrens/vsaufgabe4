@@ -1,4 +1,4 @@
-Uebersicht an Patterns:
+Pattern overview:
 
 Point-to-Point Channel:
 -ensures that only one receiver will receive a particular message
@@ -17,10 +17,12 @@ Aggregator:
 =>Aggregator publishes a single message, aggregated message to the output channel for further processing
 
 Content-Based-Router:
--
+-handels the situation where the implementation of a single logical function (e.g., inventory check) is spread across multiple physical systems
+-content-based-router routes each message to the correct recipient based on message content
 
 Content Enricher:
--
+-helps us to communicate with another system if the message originator does not have all the required data items available
+-use a content enricher, to access an external data source in order to augment a message with missing information
 
 Message Translator:
 -systems using different data formats can communicate with each other using a special filter for messaging
@@ -32,4 +34,4 @@ Channel Adapter:
 
 Message Endpoint:
 -thorugh a Message Endpoint, an application can connect to a messaging channel to send and receive messages
--connect an application to a messaging channel using a Message Endpoint, a client of the messaging system that the application can then use to send or receive messages
+-connect an application to a messaging channel (using a Message Endpoint) that the application can then use to send or receive messages
