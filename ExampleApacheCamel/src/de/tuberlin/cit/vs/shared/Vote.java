@@ -1,4 +1,4 @@
-package de.tuberlin.cit.vs;
+package de.tuberlin.cit.vs.shared;
 
 import java.io.Serializable;
 

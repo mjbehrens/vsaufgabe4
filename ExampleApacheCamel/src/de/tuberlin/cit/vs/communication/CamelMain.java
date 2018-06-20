@@ -1,4 +1,4 @@
-package de.tuberlin.cit.vs;
+package de.tuberlin.cit.vs.communication;
 
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.Exchange;
@@ -6,6 +6,8 @@ import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.processor.aggregate.AggregationStrategy;
+
+import de.tuberlin.cit.vs.shared.Vote;
 
 public class CamelMain {
     private static Processor voteFactory = new Processor() {
@@ -44,7 +46,7 @@ public class CamelMain {
         RouteBuilder route = new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from("file:votes?noop=true")
+                from("file:votes/area1?noop=true")
                     .split(body().tokenize("\n"))
                     .process(voteFactory)
                     .to("activemq:queue:validationIn");

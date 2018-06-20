@@ -1,9 +1,20 @@
-package de.tuberlin.cit.vs;
+package de.tuberlin.cit.vs.validator;
+
+import java.io.IOException;
+
+import javax.jms.Connection;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageConsumer;
+import javax.jms.MessageListener;
+import javax.jms.MessageProducer;
+import javax.jms.ObjectMessage;
+import javax.jms.Queue;
+import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-import javax.jms.*;
-import java.io.IOException;
+import de.tuberlin.cit.vs.shared.Vote;
 
 public class Validator {
     public static void main(String[] args) {
