@@ -46,7 +46,7 @@ public class CamelMain {
         RouteBuilder route = new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from("file:votes/area1?noop=true")
+                from("file:votes?noop=true")
                     .split(body().tokenize("\n"))
                     .process(voteFactory)
                     .to("activemq:queue:validationIn");
