@@ -26,12 +26,13 @@ public class WebOrderSystem {
             		Integer.parseInt(parts[2]), 
             		Integer.parseInt(parts[3]))
             );
+            
 			
 		}
 		
 	};
 
-	public static void main(String[] args) throws JMSException {
+	public static void main(String[] args) throws Exception {
 		DefaultCamelContext context = new DefaultCamelContext();
 		ActiveMQComponent activeMQComponent = ActiveMQComponent.activeMQComponent();
         activeMQComponent.setTrustAllPackages(true);
@@ -47,14 +48,28 @@ public class WebOrderSystem {
 
 			@Override
 			public void configure() throws Exception {
+				/*from("stream:in")
+				.split(body().tokenize("\n"))
+				.process(orderFactory)
+				.to("stream:out")
+				.end();*/
+				
 				from("stream:in")
                 .split(body().tokenize("\n"))
                 .process(orderFactory)
-                .to("activemq:queue:webQueue");
+                .to("activemq:queue:webQueue")
+                .end();
 				
 			}
 			
 		};
+		
+		context.addRoutes(route);
+		context.start();
+		
+		System.in.read();
+		
+		//context.stop();
 		
 	}
 	
